@@ -75,7 +75,7 @@ export default function SandwichApp() {
       <header className="pt-16 pb-12 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-7xl font-bold text-amber-900 mb-4" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-            Daily Sandwich
+            Haz Sandwich
           </h1>
           <p className="text-xl text-amber-800/80" style={{ fontFamily: 'Libre Baskerville, Georgia, serif' }}>
             What's in your kitchen today?
@@ -168,9 +168,12 @@ export default function SandwichApp() {
                     key={index}
                     className="p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border-2 border-amber-100 hover:border-amber-300 transition-all"
                   >
-                    <h3 className="text-2xl font-bold text-amber-900 mb-3" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
+                    <h3 className="text-2xl font-bold text-amber-900 mb-1" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                       {sandwich.name}
                     </h3>
+                    {sandwich.style && (
+                      <p className="text-sm text-amber-600 italic mb-3">{sandwich.style}</p>
+                    )}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {sandwich.ingredients?.map((ing, idx) => (
                         <span
@@ -194,19 +197,94 @@ export default function SandwichApp() {
               <h2 className="text-4xl font-bold text-amber-900 mb-6" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
                 Level Up
               </h2>
-              <p className="text-amber-800 mb-4 text-lg">
+              <p className="text-amber-800 mb-6 text-lg">
                 Consider adding these to elevate your sandwiches:
               </p>
-              <div className="flex flex-wrap gap-3">
-                {recommendations.complementary_ingredients?.map((ing, index) => (
-                  <span
-                    key={index}
-                    className="px-6 py-3 bg-gradient-to-r from-green-100 to-emerald-100 text-green-900 rounded-2xl font-semibold border-2 border-green-200 shadow-sm"
-                  >
-                    + {ing}
-                  </span>
-                ))}
-              </div>
+              
+              {/* Proteins */}
+              {recommendations.complementary_ingredients?.proteins && recommendations.complementary_ingredients.proteins.length > 0 && (
+                <div className="mb-5">
+                  <h3 className="text-lg font-semibold text-amber-900 mb-3">🥩 Proteins</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {recommendations.complementary_ingredients.proteins.map((ing, index) => (
+                      <span
+                        key={index}
+                        className="px-4 py-2 bg-gradient-to-r from-red-100 to-pink-100 text-red-900 rounded-xl font-medium border-2 border-red-200 shadow-sm"
+                      >
+                        + {ing}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Breads */}
+              {recommendations.complementary_ingredients?.breads && recommendations.complementary_ingredients.breads.length > 0 && (
+                <div className="mb-5">
+                  <h3 className="text-lg font-semibold text-amber-900 mb-3">🍞 Breads</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {recommendations.complementary_ingredients.breads.map((ing, index) => (
+                      <span
+                        key={index}
+                        className="px-4 py-2 bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-900 rounded-xl font-medium border-2 border-amber-200 shadow-sm"
+                      >
+                        + {ing}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Veggies */}
+              {recommendations.complementary_ingredients?.veggies && recommendations.complementary_ingredients.veggies.length > 0 && (
+                <div className="mb-5">
+                  <h3 className="text-lg font-semibold text-amber-900 mb-3">🥬 Veggies</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {recommendations.complementary_ingredients.veggies.map((ing, index) => (
+                      <span
+                        key={index}
+                        className="px-4 py-2 bg-gradient-to-r from-green-100 to-emerald-100 text-green-900 rounded-xl font-medium border-2 border-green-200 shadow-sm"
+                      >
+                        + {ing}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Sauces */}
+              {recommendations.complementary_ingredients?.sauces && recommendations.complementary_ingredients.sauces.length > 0 && (
+                <div className="mb-5">
+                  <h3 className="text-lg font-semibold text-amber-900 mb-3">🧂 Sauces & Spreads</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {recommendations.complementary_ingredients.sauces.map((ing, index) => (
+                      <span
+                        key={index}
+                        className="px-4 py-2 bg-gradient-to-r from-orange-100 to-red-100 text-orange-900 rounded-xl font-medium border-2 border-orange-200 shadow-sm"
+                      >
+                        + {ing}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Extras */}
+              {recommendations.complementary_ingredients?.extras && recommendations.complementary_ingredients.extras.length > 0 && (
+                <div className="mb-5">
+                  <h3 className="text-lg font-semibold text-amber-900 mb-3">✨ Extras & Toppings</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {recommendations.complementary_ingredients.extras.map((ing, index) => (
+                      <span
+                        key={index}
+                        className="px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-900 rounded-xl font-medium border-2 border-purple-200 shadow-sm"
+                      >
+                        + {ing}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
 
             {/* Future Inspiration */}
